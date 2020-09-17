@@ -21,6 +21,7 @@ services:
     build:
       context: ./
       dockerfile: ./docker/build/golang/Dockerfile
+    restart: always
     environment:
       API_PORT: "8080"
       MYSQL_USER: gobdd

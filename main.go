@@ -1,17 +1,12 @@
 package main
 
 import (
-	"net/http"
+	"time"
 
-	"github.com/gin-gonic/gin"
+	"github.com/jasongauvin/DB_GAUVIN_P01/router"
 )
 
 func main() {
-	r := gin.Default()
-
-	r.GET("/", func(c *gin.Context) {
-		c.JSON(http.StatusOK, gin.H{"data": "hello world"})
-	})
-
-	r.Run()
+	time.Sleep(10 * time.Second)
+	router.HandleRequests()
 }
