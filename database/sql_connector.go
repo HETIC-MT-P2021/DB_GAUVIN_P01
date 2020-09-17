@@ -10,7 +10,7 @@ import (
 var DB *sql.DB
 
 // InitializeDb connects to database
-func InitializeDb() *sql.DB {
+func InitializeDb() {
 	dbDriver := "mysql"
 	dbUser := "gobdd"
 	dbPass := "gobdd"
@@ -20,10 +20,10 @@ func InitializeDb() *sql.DB {
 
 	dsn := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s", dbUser, dbPass, dbHost, dbPort, dbName)
 	DB, err := sql.Open(dbDriver, dsn)
-
+	fmt.Println(DB)
 	// if there is an error opening the connection, handle it
 	if err != nil {
 		panic(err.Error())
 	}
-	return DB
+
 }
