@@ -1,20 +1,26 @@
 package router
 
 import (
-	"fmt"
-	"log"
-	"net/http"
-
 	"github.com/jasongauvin/DB_GAUVIN_P01/controllers"
 
 	"github.com/gin-gonic/gin"
 )
 
-func InitRouter() {
-	r := gin.Default()
-	r.GET("/employee", controllers.ShowEmployee)
-	r.Run() // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
+func InitRouter(router *gin.Engine) {
 
-	fmt.Println("Listening to port :8080")
-	log.Fatal(http.ListenAndServe(":8080", r))
+	api := router.Group("/api")
+	{
+		api.GET("/", controllers.HelloWorld)
+
+		v1 := api.Group("/v1")
+		{
+			v1.GET("/employee", controllers.ShowEmployee)
+			// v1.GET("/customers/:number", controllers.GetCustomerByNumber)
+			// v1.GET("/customers/:number/orders", controllers.GetOrdersByCustomerNumber)
+			// v1.GET("/orders/:number", controllers.GetOrderByNumber)
+			// v1.GET("/orders/:number/details", controllers.GetOrderDetailsByOrderNumber)
+			// v1.GET("/offices/:code/employees", controllers.GetEmployeesByOfficeCode)
+			// v1.GET("/offices/:code", controllers.GetOfficeByCode)
+		}
+	}
 }
