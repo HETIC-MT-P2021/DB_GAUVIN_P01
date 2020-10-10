@@ -7,7 +7,7 @@ import (
 	"github.com/jasongauvin/DB_GAUVIN_P01/utils"
 )
 
-func SelectEmployees() ([]*models.Employee, error) {
+func SelectEmployees() ([]models.Employee, error) {
 
 	var (
 		EmployeeNumber                                              uint64
@@ -22,7 +22,7 @@ func SelectEmployees() ([]*models.Employee, error) {
 	}
 	defer rows.Close()
 
-	var employees []*models.Employee
+	var employees []models.Employee
 
 	for rows.Next() {
 		err = rows.Scan(
@@ -35,7 +35,7 @@ func SelectEmployees() ([]*models.Employee, error) {
 			&JobTitle,
 			&ReportsTo)
 
-		employee := &models.Employee{
+		employee := models.Employee{
 			EmployeeNumber: EmployeeNumber,
 			Lastname:       Lastname,
 			Firstname:      Firstname,
@@ -52,5 +52,5 @@ func SelectEmployees() ([]*models.Employee, error) {
 		panic(err.Error())
 	}
 
-	return employees, nil
+	return employees, err
 }

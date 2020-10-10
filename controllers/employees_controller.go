@@ -10,7 +10,7 @@ import (
 )
 
 func ShowEmployees(c *gin.Context) {
-	var employees []*models.Employee
+	var employees []models.Employee
 	var err error
 
 	employees, err = repository.SelectEmployees()
