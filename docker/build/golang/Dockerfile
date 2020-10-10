@@ -1,7 +1,7 @@
 # Dockerfile References: https://docs.docker.com/engine/reference/builder/
 
 # Start from golang:1.12-alpine base image
-FROM golang:1.14.1-alpine3.11 as builder
+FROM golang:1.15.2-alpine3.12 as builder
 
 ENV GO111MODULE=on
 
