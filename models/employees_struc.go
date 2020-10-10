@@ -1,6 +1,6 @@
 package models
 
-type Employees struct {
+type Employee struct {
 	EmployeeNumber uint64 `json:"employeeNumber"`
 	Lastname       string `json:"lastName"`
 	Firstname      string `json:"firstName"`
