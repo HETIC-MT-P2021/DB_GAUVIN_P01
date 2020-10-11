@@ -7,6 +7,6 @@ type Employee struct {
 	Extension      string `json:"extention"`
 	Email          string `json:"email"`
 	OfficeCode     string `json:"officeCode"`
-	ReportsTo      string `json:"reportsCode"`
 	JobTitle       string `json:"jobTitle"`
+	ReportsTo      string `json:"reportsCode"`
 }
