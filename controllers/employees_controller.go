@@ -29,16 +29,16 @@ func GetEmployees(c *gin.Context) {
 }
 
 func GetEmployeesByOfficeCode(c *gin.Context) {
-	var employee []*models.Employee
+	var employees []*models.Employee
 	var err error
 	id := utils.ParseStringToUint64(c.Param("id"))
 
-	employee, err = repository.FindEmployeesByOffice(id)
+	employees, err = repository.FindEmployeesByOffice(id)
 
 	if err != nil {
 		c.JSON(http.StatusNotFound, "Could'nt fetch employees by office.")
 		return
 	}
 
-	c.JSON(http.StatusOK, employee)
+	c.JSON(http.StatusOK, employees)
 }
