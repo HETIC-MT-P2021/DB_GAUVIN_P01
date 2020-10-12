@@ -18,7 +18,7 @@ func GetOfficeByCode(c *gin.Context) {
 	offices, err = repository.FindOfficeByCode(id)
 
 	if err != nil {
-		c.JSON(http.StatusNotFound, "Could'nt fetch offices by code.")
+		c.JSON(http.StatusNotFound, "Couldn't fetch offices by code.")
 		return
 	}
 

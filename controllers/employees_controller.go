@@ -20,7 +20,7 @@ func GetEmployees(c *gin.Context) {
 	fmt.Println("employee selected: /n", employees)
 
 	if err != nil {
-		c.JSON(http.StatusNotFound, "Could'nt fetch employees.")
+		c.JSON(http.StatusNotFound, "Couldn't fetch employees.")
 		return
 	}
 
@@ -35,7 +35,7 @@ func GetEmployeesByOfficeCode(c *gin.Context) {
 	employees, err = repository.FindEmployeesByOffice(id)
 
 	if err != nil {
-		c.JSON(http.StatusNotFound, "Could'nt fetch employees by office.")
+		c.JSON(http.StatusNotFound, "Couldn't fetch employees by office.")
 		return
 	}
 
