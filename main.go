@@ -6,8 +6,8 @@ import (
 
 	"github.com/gin-gonic/gin"
 	cors "github.com/itsjamie/gin-cors"
-	"github.com/jasongauvin/DB_GAUVIN_P01/database"
 
+	"github.com/jasongauvin/DB_GAUVIN_P01/database"
 	"github.com/jasongauvin/DB_GAUVIN_P01/router"
 )
 
