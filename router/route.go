@@ -14,8 +14,9 @@ func InitRouter(router *gin.Engine) {
 
 		v1 := api.Group("/v1")
 		{
-			v1.GET("/employee", controllers.GetEmployees)
+			v1.GET("/employees", controllers.GetEmployees)
 			v1.GET("/offices/:id/employees", controllers.GetEmployeesByOfficeCode)
+			v1.GET("/offices/:id", controllers.GetOfficeByCode)
 		}
 	}
 }
