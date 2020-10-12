@@ -2,16 +2,15 @@ package repository
 
 import (
 	"github.com/jasongauvin/DB_GAUVIN_P01/database"
-	"github.com/jasongauvin/DB_GAUVIN_P01/models"
-
 	"github.com/jasongauvin/DB_GAUVIN_P01/utils"
+
+	"github.com/jasongauvin/DB_GAUVIN_P01/models"
 )
 
-func FindEmployees() ([]models.Employee, error) {
-
+func FindEmployees() (*[]models.Employee, error) {
 	var (
 		EmployeeNumber                                              uint64
-		Lastname, Firstname, Extension, Email, OfficeCode, JobTitle string
+		LastName, FirstName, Extension, Email, OfficeCode, JobTitle string
 		ReportsTo                                                   utils.NullString
 	)
 
@@ -27,38 +26,38 @@ func FindEmployees() ([]models.Employee, error) {
 	for rows.Next() {
 		err = rows.Scan(
 			&EmployeeNumber,
-			&Lastname,
-			&Firstname,
+			&LastName,
+			&FirstName,
 			&Extension,
 			&Email,
 			&OfficeCode,
 			&JobTitle,
-			&ReportsTo)
+			&ReportsTo,
+		)
 
 		employee := models.Employee{
 			EmployeeNumber: EmployeeNumber,
-			Lastname:       Lastname,
-			Firstname:      Firstname,
+			LastName:       LastName,
+			FirstName:      FirstName,
 			Extension:      Extension,
 			Email:          Email,
 			OfficeCode:     OfficeCode,
 			JobTitle:       JobTitle,
 			ReportsTo:      ReportsTo.String,
 		}
-
 		employees = append(employees, employee)
 	}
 	if err != nil {
-		//panic(err.Error())
+		panic(err.Error())
 	}
 
-	return employees, nil
+	return &employees, nil
 }
 
-func FindEmployeesByOffice(code uint64) ([]*models.Employee, error) {
+func FindEmployeesByOffice(code uint64) (*[]models.Employee, error) {
 	var (
 		EmployeeNumber                                              uint64
-		Lastname, Firstname, Extension, Email, OfficeCode, JobTitle string
+		LastName, FirstName, Extension, Email, OfficeCode, JobTitle string
 		ReportsTo                                                   utils.NullString
 	)
 
@@ -70,34 +69,36 @@ func FindEmployeesByOffice(code uint64) ([]*models.Employee, error) {
 		panic(err.Error())
 	}
 
-	var employees []*models.Employee
+	var employees []models.Employee
 
 	for rows.Next() {
 		err = rows.Scan(
 			&EmployeeNumber,
-			&Lastname,
-			&Firstname,
+			&LastName,
+			&FirstName,
 			&Extension,
 			&Email,
 			&OfficeCode,
 			&JobTitle,
-			&ReportsTo)
+			&ReportsTo,
+		)
 
-		employee := &models.Employee{
+		employee := models.Employee{
 			EmployeeNumber: EmployeeNumber,
-			Lastname:       Lastname,
-			Firstname:      Firstname,
+			LastName:       LastName,
+			FirstName:      FirstName,
 			Extension:      Extension,
 			Email:          Email,
 			OfficeCode:     OfficeCode,
 			JobTitle:       JobTitle,
 			ReportsTo:      ReportsTo.String,
 		}
+
 		employees = append(employees, employee)
 	}
 	if err != nil {
-		//panic(err.Error())
+		panic(err.Error())
 	}
 
-	return employees, nil
+	return &employees, nil
 }

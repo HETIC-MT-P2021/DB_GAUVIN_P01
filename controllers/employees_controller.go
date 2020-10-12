@@ -12,12 +12,11 @@ import (
 )
 
 func GetEmployees(c *gin.Context) {
-	var employees []models.Employee
+	var employees *[]models.Employee
 	var err error
 
 	employees, err = repository.FindEmployees()
 
-	fmt.Println(err)
 	fmt.Println("employee selected: /n", employees)
 
 	if err != nil {
@@ -29,7 +28,7 @@ func GetEmployees(c *gin.Context) {
 }
 
 func GetEmployeesByOfficeCode(c *gin.Context) {
-	var employees []*models.Employee
+	var employees *[]models.Employee
 	var err error
 	id := utils.ParseStringToUint64(c.Param("id"))
 
