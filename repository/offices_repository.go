@@ -6,36 +6,21 @@ import (
 )
 
 func FindOfficeByCode(code uint64) (*models.Office, error) {
-	var (
-		OfficeCode                                                                     uint64
-		City, Phone, AddressLine1, AddressLine2, State, Country, PostalCode, Territory string
-	)
+	office := models.Office{}
 
 	rows := database.DB.QueryRow("SELECT o.officeCode, o.city, o.phone, o.addressLine1, o.addressLine2, o.state, o.country, o.postalCode, o.territory FROM offices o WHERE o.officeCode = ?;", code)
 
 	err := rows.Scan(
-		&OfficeCode,
-		&City,
-		&Phone,
-		&AddressLine1,
-		&AddressLine2,
-		&State,
-		&Country,
-		&PostalCode,
-		&Territory,
+		&office.OfficeCode,
+		&office.City,
+		&office.Phone,
+		&office.AddressLine1,
+		&office.AddressLine2,
+		&office.State,
+		&office.Country,
+		&office.PostalCode,
+		&office.Territory,
 	)
-
-	office := models.Office{
-		OfficeCode:   OfficeCode,
-		City:         City,
-		Phone:        Phone,
-		AddressLine1: AddressLine1,
-		AddressLine2: AddressLine2,
-		State:        State,
-		Country:      Country,
-		PostalCode:   PostalCode,
-		Territory:    Territory,
-	}
 
 	if err != nil {
 		panic(err.Error())
